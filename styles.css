@@ -1,3 +1,37 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+
+.conditions{
+    display: flex;
+}
+
+.conditions>div{
+    margin-right: 50px;
+}
+
+.time{
+    width: 40px;
+}
+
+.generate{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.generate button{
+    width: 100px;
+    height: 40px;
+    font-size: large;
+    background-color:gold;
+    cursor: pointer;
+    border: white;
+    color:navy
+}
+
+.result{
+    display: flex;
+    justify-content: center;
+}

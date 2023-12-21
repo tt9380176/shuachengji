@@ -5,15 +5,63 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
-    <title>Hello World!</title>
+    <!-- <link rel="stylesheet" href="./element-plus/index.css" />
+    <script src="./vue.global.js"></script>
+    <script src="./element-plus/index.full.js"></script> -->
+    <title>随机成绩生成工具</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <div id="app">
+      <div style="font-size: 12px; border: gray 1px solid; margin: 20px; padding: 10px;">
+        <p>
+          说明：本程序是批量生成实验时间和实验成绩的工具。“开始时间”是设置实验开始时间的，按照年月日时分来填写即可；“实验开始最大延迟”是设置允许在实验开始时间多久内进行随机开始时间的生成；
+          “实验时长区间设置”是设置实验的时长随机区间，也就是实验开始时间多久后，生成结束时间；“成绩区间设置”是设置分数的随机区间；“数据生成数量”是具体要生成的数据条数。
+          本程序是为了生成数据后，粘贴到excel用的，所以具体的生成结果按照开始时间，结束时间以及成绩进行了三栏输出，数据生成后，直接复制数据到excel即可。
+        </p>
+        <p>
+          举例：开始时间设置2023-10-11 15:30，实验开始最大延迟是10分钟，实验时长区间设置为60-120分钟，成绩区间设置为60-100分，数据生成数量为20。 点击生成后，开始时间会随机生成在2023-10-11 15:30到2023-10-11 15:40之间，
+          结束时间会根据开始时间加上60-120分钟之间的随机时间来生成，分数会随机生成在60到100分之间，数据生成数量是20条。
+        </p>
+      </div>
+      <div class="conditions">
+        <div>
+          <span>开始时间：</span><span><input type="text" class="time" id="year">年<input type="text" class="time" id="month">月<input type="text" class="time" id="day">日<input type="text" class="time" id="hour">时<input type="text" class="time" id="minute">分</span>
+        </div>
+        <div>
+          <span>实验开始最大延迟：</span><span><input type="text" value="10"  class="time" id="maxDelay">分钟</span>
+        </div>
+        <div>
+          <span>实验时长区间设置：</span><span><input type="text" value="60" class="time" id="minDuration">分钟&nbsp;&nbsp;-&nbsp;&nbsp;<input type="text" value="120" class="time" id="maxDuration">分钟</span>
+        </div>
+        <div>
+          <span>成绩区间设置：</input></span><span><input type="text" value="60" class="time" id="minScore">分钟</input>&nbsp;&nbsp;-&nbsp;&nbsp;<input type="text" value="100" class="time" id="maxScore">分钟</span>
+        </div>
+        <div>
+          <span>数据生成数量：</span><span><input type="text" value="60" class="time" id="count"></span>
+        </div>
+      </div>
+      <div class="generate"><button id="generate">生成！</button></div>
+      <div class="result">
+        <table>
+          <thead>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>成绩</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea name="" id="startTimes" cols="30" rows="50"></textarea></td>
+              <td><textarea name="" id="endTimes" cols="30" rows="50"></textarea></td>
+              <td><textarea name="" id="scores" cols="30" rows="50"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
+    <script src="./jquery.js"></script>
+    <script src="./generate.js"></script>
   </body>
 </html>
